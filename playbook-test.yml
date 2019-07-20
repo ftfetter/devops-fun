@@ -1,0 +1,20 @@
+---
+
+- name: Testing Playbook
+  hosts: localhost
+  tasks:
+  - name: Testing Host Connection
+    ping:
+    register: status
+
+  - debug: status
+
+  - name: Installing all Dependencies
+    become: yes
+    yum: 
+      name: "{{ packages }}"
+      state: present
+    vars:
+      packages:
+      - git
+      - curl
