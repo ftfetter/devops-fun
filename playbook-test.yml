@@ -1,20 +1,29 @@
 ---
 
-- name: Testing Playbook
-  hosts: localhost
-  tasks:
-  - name: Testing Host Connection
-    ping:
-    register: status
+- name: Testing Playbook  # Playbook name
+  hosts: localhost        # Defining host group
+  tasks:                  # Listing tasks to run
+  - name: Testing Host Connection     # Name of the first task
+    ping:                             # Run 'ping'
+    register: status                  # Save the results on 'status' variable
 
-  - debug: status
+  - debug:                            # Run debug task
+      var: status                     # to show 'status' content
 
-  - name: Installing all Dependencies
-    become: yes
-    yum: 
-      name: "{{ packages }}"
-      state: present
-    vars:
-      packages:
-      - git
-      - curl
+  - name: Installing all Dependencies # Name of the second task
+    become: yes                       # Running as 'sudo'
+    yum:                              # Execute 'yum'
+      name: "{{ packages }}"          # For each element of the 'package' variable
+      state: present                  # To turn these packages present on the system
+    vars:                             # Declaring variables
+      packages:                       # Setting 'packages' content
+      - git                           # With 'git',
+      - curl                          # and 'curl' words
+# Basically, 'Installing all Dependencies' task will install all listed items if they're not present
+  
+  - name: Downloading and unpacking GoLang  # Name of the third task
+    become: yes                       # Running as 'sudo'
+    unarchive:                        # Preparing to unpack
+      src: https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz  # This file
+      dest: /usr/local                # To user directory
+      remote_src: yes                 # From remote
