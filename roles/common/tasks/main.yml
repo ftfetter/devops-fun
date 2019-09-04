@@ -1,0 +1,8 @@
+---
+- name: Installing basic Dependencies   # Name of the task
+  become: yes                       # Running as 'sudo'
+  yum:                              # Execute 'yum'
+    name: "{{ packages }}"          # For each element of the 'package' variable
+    state: present                  # To turn these packages present on the system
+# Basically, 'Installing all Dependencies' task will install all listed items if they're not present
+  

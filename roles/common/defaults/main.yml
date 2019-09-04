@@ -1,0 +1,4 @@
+---
+packages:                       # Setting 'packages' content
+- git                           # With 'git',
+- curl                          # and 'curl' words

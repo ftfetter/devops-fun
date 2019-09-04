@@ -1,0 +1,5 @@
+---
+go_version: 1.12.6
+go_mirror: https://dl.google.com/go/
+
+go_root: /usr/local

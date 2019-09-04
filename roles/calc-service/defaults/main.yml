@@ -1,0 +1,3 @@
+---
+dependencies:                   # Setting 'dependencies' content
+- github.com/gorilla/mux        # with GorillaMux

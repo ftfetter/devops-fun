@@ -1,0 +1,15 @@
+---
+- name: Downloading and unpacking GoLang  # Name of the task
+  become: yes                       # Running as 'sudo'
+  unarchive:                        # Preparing to unpack
+    src: "{{ go_mirror }}/go{{ go_version }}.linux-amd64.tar.gz"  # This file
+    dest: "{{ go_root }}"           # To GOROOT directory
+    remote_src: yes                 # From remote
+
+- name: Checking environment        # Name of the task
+  shell: go version                 # Get GoLang version
+  register: check                   # and saves on 'check' var
+
+- name: Display GoLang version      # Name of the task
+  debug:                            # Print
+    var: check                      # 'check' content

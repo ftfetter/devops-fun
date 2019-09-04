@@ -1,0 +1,11 @@
+---
+- name: Run calc-service on VM
+  hosts: localhost
+  roles:
+    - common
+    - golang
+    - calc-service
+  environment:
+    GO_ROOT: "/usr/local/go"
+    GO_PATH: "$HOME/go"
+    PATH: "$PATH:$GO_ROOT/bin"
