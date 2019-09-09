@@ -1,0 +1,15 @@
+---
+- name: Downloading service dependencies  # Name of the task
+  shell: ./go get {{ dependencies }}  # Get all service dependencies
+  args:                             # Args for command module
+    chdir: /usr/local/go/bin/       # specifying in which directory will be runned 
+
+- name: Installing service          # Name of the task
+  shell: ./go install github.com/ftfetter/devops-fun    # Installing Go service
+  args:                             # Args for command module
+    chdir: /usr/local/go/bin/       # specifying in which directory will be runned 
+
+- name: Running service             # Name of the task
+  command: ./devops-fun             # Run application
+  args:                             # Args for command module
+    chdir: ~/go/bin/                # from go/bin directory

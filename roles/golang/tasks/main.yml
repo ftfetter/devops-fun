@@ -7,8 +7,10 @@
     remote_src: yes                 # From remote
 
 - name: Checking environment        # Name of the task
-  shell: go version                 # Get GoLang version
+  command: ./go version             # Get GoLang version
   register: check                   # and saves on 'check' var
+  args:                             # Args for command module
+    chdir: /usr/local/go/bin/       # specifying in which directory will be runned 
 
 - name: Display GoLang version      # Name of the task
   debug:                            # Print
